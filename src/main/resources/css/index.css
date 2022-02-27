@@ -1,0 +1,332 @@
+html body
+{
+    font-family: Arial;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+.border_blue
+{
+    border: 1px solid #0000FF;
+}
+div b
+{
+    color: #FF0000;
+}
+.table_1
+{
+    border-collapse: collapse;
+    border: 0px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #00ccFF;
+}
+.table_1 td
+{
+    border: 1px solid #000000;
+}
+.table_1 td.tbl_N
+{
+    width: 60px;
+    text-align: center;
+}
+.table_1 td.tbl_Count, .table_1 td.tbl_Price, .table_1 td.tbl_Sum
+{
+    width: 80px;
+    text-align: center;
+}
+.table_1 td.tbl_Price, .table_1 td.tbl_Sum
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+.table_1 td.tbl_Name
+{
+    text-align: left;
+}
+.table_1 th
+{
+    border: 1px solid #000000;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
+    height: 30px;
+    background-color: #444444;
+    color: #CCCCCC;
+}
+.table_1 .tbl_group
+{
+    font-size: 12px;
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-style: italic;
+    font-weight: bold;
+}
+.table_1 .tbl_Itog
+{
+    text-align: right;
+    font-weight: bold;
+}
+.table_1 .tbl_SumItog
+{
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+}
+.table_1 tr.tbl_Select
+{
+    background-color: #FF8800;
+}
+
+.table_2
+{
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    width: 500px;
+    margin: 50px auto;
+}
+.table_2 td.inp input, .table_2 td select, .table_2 td textarea
+{
+    width: 300px;
+    border: 1px solid #0000FF;
+}
+
+div.spisok_1 a
+{
+    text-decoration: none;
+    color: #0000FF;
+}
+div.spisok_1 a:hover
+{
+    text-decoration: underline;
+    color: #FF0000;
+}
+div.spisok_2 a
+{
+    text-decoration: none;
+    color: #0000FF;
+}
+div.spisok_2 a:hover
+{
+    text-decoration: none;
+    color: #00ccFF;
+}
+div.spisok_2 li
+{
+    display: inline;
+    padding: 4px;
+    margin-right: 10px;
+    border: 1px solid #0000FF;
+}
+
+.table_3
+{
+    border-collapse: collapse;
+    border: 0px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+.table_3 td
+{
+    border: 1px solid #212121;
+    text-align: center;
+    height: 20px;
+    vertical-align: middle;
+}
+.table_3 td.txtAlignLeft
+{
+    text-align: left;
+}
+.table_3 td.colspan5
+{
+    text-align: center;
+    vertical-align: middle;
+    height: 50px;
+}
+.table_3 tr.zagolovok td
+{
+    text-align: center;
+    font-weight: bold;
+    height: 30px;
+    vertical-align: middle;
+    background-color: #cccccc;
+}
+
+img.button {
+    cursor: pointer;
+}
+div#AllScreenTransparent {
+    border: 0px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top: 0px;
+    right: 0px;
+    background: #CDD6DB;
+    opacity: 0.8;
+    display: none;
+}
+
+div#AllScreen {
+    border: 0px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top: 0px;
+    right: 0px;
+    display: none;
+}
+div#AllScreen div.AddPersonBlock {
+    border: 1px solid #000000;
+    width: 500px;
+    margin: 150px auto;
+    background-color: #ffffff;
+    padding: 10px;
+
+}
+div.AddPersonBlock span {
+    width: 200px;
+    display: inline-block;
+    text-align: left;
+}
+
+div.AddPersonBlock div {
+    padding-top: 5px;
+}
+div.AddPersonBlock input {
+    width: 290px;
+    display: inline-block;
+    border: 1px solid #00bfff;
+}
+
+div.AddPersonBlock div {
+    text-align: center;
+}
+
+div.buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+div.buttons input {
+    width: 120px;
+}
+
+div#formZagolovok {
+    font-weight: bold;
+    color: #0000FF;
+    font-size: 16px;
+}
+
+div#error {
+    color: red;
+}
+
+div#QuestionBox {
+    border: 0px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top: 0px;
+    right: 0px;
+    display: none;
+}
+div#QuestionBox div.QuestionBox {
+    border: 0px solid #ada9a5;
+    width: 450px;
+    margin: 150px auto;
+}
+div.QuestionTitle {
+    height: 29px;
+}
+div.QuestionTitle span.topleft {
+    width: 5px;
+    height: 29px;
+    background-image: url("../../../../../JDBC/src/main/webapp/img/questionbox_bgtopleft.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: left;
+    border: 0px;
+}
+div.QuestionTitle span.topcenter {
+    width: 440px;
+    height: 29px;
+    background-image: url("../../../../../JDBC/src/main/webapp/img/questionbox_bgtopcenter.png");
+    background-repeat: repeat-x;
+    display: inline-block;
+    float: left;
+    border: 0px;
+    color: #807d78;
+    padding-top: 7px;
+    font-weight: bold;
+
+}
+div.QuestionTitle span.topright {
+    width: 5px;
+    height: 29px;
+    background-image: url("../../../../../JDBC/src/main/webapp/img/questionbox_bgtopright.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: left;
+}
+div.QuestionText {
+    border-left: 1px solid #ada9a5;
+    border-right: 1px solid #ada9a5;
+    background-color: #ffffff;
+}
+
+div#QuestionButtons {
+    border-left: 1px solid #ada9a5;
+    border-right: 1px solid #ada9a5;
+    border-bottom: 1px solid #ada9a5;
+    padding: 12px;
+    background-color: #f0f0f0;
+    text-align: right;
+    clear: none;
+}
+div#QuestionButtons input {
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+    background-image: url("../../../../../JDBC/src/main/webapp/img/button_bg.png");
+    background-repeat: repeat-x;
+    height: 27px;
+    margin-left: 10px;
+    width: 100px;
+    color: #4c4c52;
+    font-size: 13px;
+    cursor: pointer;
+}
+div#QuestionButtons input:hover {
+    border: 1px solid #ab8678;
+    border-radius: 3px;
+    background-image: url("../../../../../JDBC/src/main/webapp/img/button_bg_hover.png");
+    background-repeat: repeat-x;
+    height: 27px;
+    margin-left: 10px;
+    width: 100px;
+    color: #4c4c52;
+    font-size: 13px;
+}
+div.QuestionLogo {
+    background-image: url("../../../../../JDBC/src/main/webapp/img/question.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    width: 80px;
+    height: 79px;
+    display: inline-block;
+    float: left;
+    width: 100px;
+}
+div#QuestionText {
+    display: inline-block;
+    width: 330px;
+    min-height: 80px;
+    margin-top: 15px;
+    margin-left: 5px;
+}

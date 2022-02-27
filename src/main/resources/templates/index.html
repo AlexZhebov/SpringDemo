@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/css/index.css" rel="stylesheet" type="text/css">
+    <script defer src="/js/index.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+
+<div id="AllScreenTransparent">
+
+</div>
+
+<div id="AllScreen">
+    <div class="AddPersonBlock">
+        <div id="formZagolovok">Добавление персоны</div>
+        <hr>
+        <div><span>Имя:</span><input type="text" id="firstName" value=""></div>
+        <div><span>Фамилия:</span><input type="text" id="lastName" value=""></div>
+        <div><span>Город:</span><input type="text" id="city" value=""></div>
+        <div><span>Дата рождения:</span><input type="date" id="dataR" value="2000-01-01"></div>
+        <div id="error"></div>
+        <div class="buttons"><input type="button" value="Добавить" id="addPerson" onClick="addPerson();">
+            <input type="button" value="Отмена" id="addPerson" onClick="cancelPerson();">
+            <input type="hidden" id="index_person"><input type="hidden" id="id">
+        </div>
+    </div>
+</div>
+
+<div id="QuestionBox">
+    <div class="QuestionBox">
+        <div class="QuestionTitle">
+            <span class="topleft"></span>
+            <span class="topcenter" id="QuestionTitle">Запрос на удаление</span>
+            <span class="topright"></span>
+        </div>
+        <div class="QuestionText">
+            <div class="QuestionLogo"></div>
+            <div id="QuestionText">Вы действительно хотите удалить?</div>
+        </div>
+        <div id="QuestionButtons"><input type="button" value="Да" id="QuestionButtonYes"><input type="button" value="Нет" id="QuestionButtonNo"></div>
+    </div>
+</div>
+
+
+
+
+
+<div style="text-align: center;"><h1>Подгрузка файла в формате <b>Json</b> загрузка данных в массив <b>arrPerson</b> и вывод в таблицу</h1></div>
+<div id="person" th:each="el : ${persons}">
+    <h3 th:text="${el.firstname}" />
+</div>
+<div class="buttons">
+    <input type="button" value="Добавить"  onClick="openFormPerson();">
+</div>
+
+</body>
+</html>
