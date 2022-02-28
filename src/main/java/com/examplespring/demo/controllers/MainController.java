@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class MainController {
+    public String script = "";
 
     @Autowired
     private PersonsRepositiry personsRepositiry;
@@ -19,7 +20,23 @@ public class MainController {
         model.addAttribute("title", "Главная страница");
 
         Iterable<persons> persons = personsRepositiry.findAll();
+
         model.addAttribute("persons", persons);
+        script = "arrPerson = [\n";
+        int i = 0;
+        persons.forEach(e -> {
+
+            script = script + "  {\n" +
+                    "  \"firstName\": \"" + e.getFirstname() + "\",\n" +
+                    "  \"lastName\": \"Жебов 555\",\n" +
+                    "  \"city\": \"Вуктыл\",\n" +
+                    "  \"dataR\": \"1985-09-04\"\n" +
+                    "  },";
+        });
+        script = script + "\n]\n";
+        System.out.println(script);
+
+        model.addAttribute("script", script);
         return "index";
     }
 

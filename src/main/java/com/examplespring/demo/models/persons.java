@@ -26,5 +26,23 @@ public class persons {
     public  void setFirstname (String fn) {
         this.firstname = fn;
     }
-
+    public String getLastname() {
+        return lastname;
+    }
+    public  void setLastname (String ln) {
+        this.lastname = ln;
+    }
+    public String getCity() {
+        return city;
+    }
+    public  void setCity (String ci) {
+        this.city = ci;
+    }
+    public String getDatar () {
+        String[] Arr = datar.split("-");
+        return Arr[2]+"."+Arr[1]+"."+Arr[0];
+    }
+    public void setDatar (String dr) {
+        this.datar = dr;
+    }
 }

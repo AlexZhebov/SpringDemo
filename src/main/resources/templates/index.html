@@ -51,12 +51,27 @@
 
 
 <div style="text-align: center;"><h1>Подгрузка файла в формате <b>Json</b> загрузка данных в массив <b>arrPerson</b> и вывод в таблицу</h1></div>
-<div id="person" th:each="el : ${persons}">
-    <h3 th:text="${el.firstname}" />
+<div id="person">
+    <table class='table_3' style='margin-top: 50px;'>
+        <tr class='zagolovok'>
+            <td>№</td><td>ФИО</td><td>Город</td><td>Дата рождения</td><td>Операции</td>
+        </tr>
+        <tr th:each="el,rowStat : ${persons}">
+            <td th:text="${rowStat.count}" />
+            <td class='txtAlignLeft' th:text="${el.firstname} + ' ' + ${el.lastname}"/>
+            <td th:text="${el.city}" />
+            <td th:text="${el.datar}" />
+            <td><img src='/img/edit.png' class='button' th:attr="onclick=|editPerson('${rowStat.count-1}');|">
+                <img src='/img/delete.png' class='button' th:attr="onclick=|deletePerson('${rowStat.count-1}');|">
+            </td>
+        </tr>
+    </table>
 </div>
 <div class="buttons">
     <input type="button" value="Добавить"  onClick="openFormPerson();">
 </div>
-
+<script th:inline="javascript">
+[(${script})]
+</script>
 </body>
 </html>
