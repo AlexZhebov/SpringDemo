@@ -1,11 +1,9 @@
 package com.examplespring.demo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "persons")
 public class persons {
 
     @Id
@@ -39,10 +37,14 @@ public class persons {
         this.city = ci;
     }
     public String getDatar () {
-        String[] Arr = datar.split("-");
-        return Arr[2]+"."+Arr[1]+"."+Arr[0];
+        //String[] Arr = datar.split("-");
+        //return Arr[2]+"."+Arr[1]+"."+Arr[0];
+        return datar;
     }
     public void setDatar (String dr) {
         this.datar = dr;
+    }
+    public String getAllUsers () {
+        return "ххх";
     }
 }

@@ -248,7 +248,7 @@ div.QuestionTitle {
 div.QuestionTitle span.topleft {
     width: 5px;
     height: 29px;
-    background-image: url("../../../../../JDBC/src/main/webapp/img/questionbox_bgtopleft.png");
+    background-image: url("/img/questionbox_bgtopleft.png");
     background-repeat: no-repeat;
     display: inline-block;
     float: left;
@@ -257,7 +257,7 @@ div.QuestionTitle span.topleft {
 div.QuestionTitle span.topcenter {
     width: 440px;
     height: 29px;
-    background-image: url("../../../../../JDBC/src/main/webapp/img/questionbox_bgtopcenter.png");
+    background-image: url("/img/questionbox_bgtopcenter.png");
     background-repeat: repeat-x;
     display: inline-block;
     float: left;
@@ -270,7 +270,7 @@ div.QuestionTitle span.topcenter {
 div.QuestionTitle span.topright {
     width: 5px;
     height: 29px;
-    background-image: url("../../../../../JDBC/src/main/webapp/img/questionbox_bgtopright.png");
+    background-image: url("/img/questionbox_bgtopright.png");
     background-repeat: no-repeat;
     display: inline-block;
     float: left;
@@ -293,7 +293,7 @@ div#QuestionButtons {
 div#QuestionButtons input {
     border: 1px solid #a6a6a6;
     border-radius: 3px;
-    background-image: url("../../../../../JDBC/src/main/webapp/img/button_bg.png");
+    background-image: url("/img/button_bg.png");
     background-repeat: repeat-x;
     height: 27px;
     margin-left: 10px;
@@ -305,7 +305,7 @@ div#QuestionButtons input {
 div#QuestionButtons input:hover {
     border: 1px solid #ab8678;
     border-radius: 3px;
-    background-image: url("../../../../../JDBC/src/main/webapp/img/button_bg_hover.png");
+    background-image: url("/img/button_bg_hover.png");
     background-repeat: repeat-x;
     height: 27px;
     margin-left: 10px;
@@ -314,7 +314,7 @@ div#QuestionButtons input:hover {
     font-size: 13px;
 }
 div.QuestionLogo {
-    background-image: url("../../../../../JDBC/src/main/webapp/img/question.png");
+    background-image: url("/img/question.png");
     background-repeat: no-repeat;
     background-position: right;
     width: 80px;

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MainController {
     public String script = "";
-
+    public int i = 0;
     @Autowired
     private PersonsRepositiry personsRepositiry;
 
@@ -23,15 +23,19 @@ public class MainController {
 
         model.addAttribute("persons", persons);
         script = "arrPerson = [\n";
-        int i = 0;
+        i = 0;
         persons.forEach(e -> {
-
+            if (i > 0) {
+                script = script + ", \n";
+            }
             script = script + "  {\n" +
+                    "  \"id\": \"" + e.getId() + "\",\n" +
                     "  \"firstName\": \"" + e.getFirstname() + "\",\n" +
                     "  \"lastName\": \"Жебов 555\",\n" +
                     "  \"city\": \"Вуктыл\",\n" +
                     "  \"dataR\": \"1985-09-04\"\n" +
-                    "  },";
+                    "  }";
+            i = i + 1;
         });
         script = script + "\n]\n";
         System.out.println(script);

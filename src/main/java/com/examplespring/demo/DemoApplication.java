@@ -20,5 +20,8 @@ public class DemoApplication extends WebMvcConfigurerAdapter {
 		if (!registry.hasMappingForPattern("/js/**")) {
 			registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js/");
 		}
+		if (!registry.hasMappingForPattern("/img/**")) {
+			registry.addResourceHandler("/img/**").addResourceLocations("classpath:/img/");
+		}
 	}
 }

@@ -93,8 +93,8 @@ function AllPersonToDiv() {
     for (var i = 0; i < arrPerson.length; i++) {
         html += "<tr><td>" + (i + 1) + "</td><td class='txtAlignLeft'>" + arrPerson[i].firstName + " " + arrPerson[i].lastName +
             "</td><td>" + arrPerson[i].city + "</td><td>" + reverseDate(arrPerson[i].dataR) +
-            "</td><td>" + arrPerson[i].age() + "</td><td><img src='../../../../../JDBC/src/main/webapp/img/edit.png' class='button' onclick='editPerson(" + i +");'>" +
-            "<img src='../../../../../JDBC/src/main/webapp/img/delete.png' class='button' onclick='deletePerson(" + i +");'></td></tr>";
+            "</td><td>" + arrPerson[i].age() + "</td><td><img src='/img/edit.png' class='button' onclick='editPerson(" + i +");'>" +
+            "<img src='/img/delete.png' class='button' onclick='deletePerson(" + i +");'></td></tr>";
     }
     if (arrPerson.length==0) {
         html += "<tr><td colspan='5'>В массиве нет записей</td></tr>";
@@ -242,5 +242,6 @@ function QustionBox (qTitle, qText, fYes, fNo) {
  * Выполняем запрос к файлу с данными в формате JSON, при удачном выполнении запроса выволняем
  * функцию копирования загруженных данных в массив
  */
+
 sendRequest("GET", "http://localhost/showdb?fff")
     .then(data => {copyDownloadPersonInArray(data);})
