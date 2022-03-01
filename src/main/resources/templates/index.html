@@ -9,7 +9,7 @@
 
     </script>
 </head>
-<body>
+<body onload="refreshPerson();">
 
 <div id="AllScreenTransparent">
 
@@ -56,6 +56,7 @@
         <tr class='zagolovok'>
             <td>№</td><td>ФИО</td><td>Город</td><td>Дата рождения</td><td>Операции</td>
         </tr>
+        <tr><td colspan="5" class="colspan5"> <img src="/img/loading.gif" width="32"> Идет загрузка данных с сервера...</td></tr>
         <tr th:each="el,rowStat : ${persons}">
             <td th:text="${rowStat.count}" />
             <td class='txtAlignLeft' th:text="${el.firstname} + ' ' + ${el.lastname}"/>
@@ -69,6 +70,7 @@
 </div>
 <div class="buttons">
     <input type="button" value="Добавить"  onClick="openFormPerson();">
+    <input type="button" value="Обновить"  onClick="refreshPerson();">
 </div>
 <script th:inline="javascript">
 [(${script})]

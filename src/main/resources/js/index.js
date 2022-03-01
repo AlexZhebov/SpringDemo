@@ -67,6 +67,7 @@ function sendRequest(method, url, body = null) {
  * @param data - полученные данные
  */
 function copyDownloadPersonInArray( data ) {
+    arrPerson.splice(0, arrPerson.length);
     for (var i = 0; i < data.length; i++) {
         let p = {};
         p.__proto__ = Person;
@@ -162,7 +163,21 @@ function deletePerson(i) {
         " (" + arrPerson[i].city + ")" + "\"?", () => {
         arrPerson[i].id = String(arrPerson[i].id);
         sendRequest("POST", "http://localhost/showdb?persons=delete", arrPerson[i])
-            .then(data => {console.log(data);})
+            .then(data => {
+                let err = true;
+                if (data !== null) {
+                    if (data["deleted_id"] !== undefined) {
+                        if (data["deleted_id"] !== "-1") {
+                            err = false;
+                            console.log("Удалена запись в БД с индексом id = " + data["deleted_id"]);
+                        }
+                    }
+                }
+                if (err) {
+                    alert("В процессе удаления записи в БД произошла ошибка!");
+                    console.log(data);
+                }
+            })
         arrPerson.splice(i, 1);
         AllPersonToDiv();
         qBox.style.display = "none";
@@ -208,10 +223,24 @@ function addPerson() {
     if (index_person == -1) {
         sendRequest("POST", "http://localhost/showdb?persons=add", p)
             .then(data => {
-                console.log(data);
-                p.id = data["insert_id"];
-                arrPerson.push(p);
-                AllPersonToDiv();
+
+                let err = true;
+                if (data !== null) {
+                    if (data["insert_id"] !== undefined) {
+                        if (data["insert_id"] !== "-1") {
+                            p.id = data["insert_id"];
+                            arrPerson.push(p);
+                            AllPersonToDiv();
+                            err = false;
+                            console.log("Создана в БД запись с индексом id = " + data["insert_id"]);
+                        }
+                    }
+                }
+                if (err) {
+                    alert("В процессе создания записи в БД произошла ошибка!");
+                    console.log(data);
+                }
+
             })
 
     } else {
@@ -221,7 +250,21 @@ function addPerson() {
         arrPerson[index_person].city = p.city;
         arrPerson[index_person].dataR = p.dataR;
         sendRequest("POST", "http://localhost/showdb?persons=edit", p)
-            .then(data => {console.log(data); })
+            .then(data => {
+                let err = true;
+                if (data !== null) {
+                    if (data["updated_id"] !== undefined) {
+                        if (data["updated_id"] !== "-1") {
+                            err = false;
+                            console.log("Изменена запись в БД с индексом id = " + data["updated_id"]);
+                        }
+                    }
+                }
+                if (err) {
+                    alert("В процессе изменения записи в БД произошла ошибка!");
+                    console.log(data);
+                }
+            })
     }
 
     cancelPerson();
@@ -238,10 +281,32 @@ function QustionBox (qTitle, qText, fYes, fNo) {
     document.getElementById("QuestionButtonNo").onclick = fNo;
 }
 
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+
 /**
  * Выполняем запрос к файлу с данными в формате JSON, при удачном выполнении запроса выволняем
  * функцию копирования загруженных данных в массив
  */
 
-sendRequest("GET", "http://localhost/showdb?fff")
-    .then(data => {copyDownloadPersonInArray(data);})
+function refreshPerson(){
+    let html = "";
+    html = "<table class='table_3' style='margin-top: 50px;'>";
+    html += "<tr class='zagolovok'><td>№</td><td>ФИО</td><td>Город</td><td>Дата рождения</td><td>Возраст</td><td>Операции</td></tr>";
+    html += "<tr><td colspan=\"6\" class=\"colspan5\"> <img src=\"/img/loading.gif\" width=\"32\"> Идет загрузка данных с сервера...</td></tr>";
+    html += "</table>";
+    document.getElementById("person").innerHTML = html;
+
+   // sleep(5000);
+    setTimeout( () => {
+        sendRequest("GET", "http://localhost/showdb")
+            .then(data => {copyDownloadPersonInArray(data);})
+        }, 5000);
+
+}

@@ -147,7 +147,8 @@ div.spisok_2 li
 {
     text-align: center;
     vertical-align: middle;
-    height: 50px;
+    height: 150px;
+    font-size: 30px;
 }
 .table_3 tr.zagolovok td
 {

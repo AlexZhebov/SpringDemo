@@ -21,6 +21,7 @@ public class MainController {
 
         Iterable<persons> persons = personsRepositiry.findAll();
 
+        /** наполняем переменную и отправляем шаблон для теста
         model.addAttribute("persons", persons);
         script = "arrPerson = [\n";
         i = 0;
@@ -41,6 +42,7 @@ public class MainController {
         System.out.println(script);
 
         model.addAttribute("script", script);
+        */
         return "index";
     }
 
