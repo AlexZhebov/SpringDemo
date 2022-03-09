@@ -26,6 +26,7 @@ public class DemoApplication extends WebMvcConfigurerAdapter {
         SpringApplication.run(DemoApplication.class, args);
 	}
 
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		if (!registry.hasMappingForPattern("/css/**")) {
