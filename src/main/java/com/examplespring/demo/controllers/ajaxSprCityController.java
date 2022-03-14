@@ -163,7 +163,7 @@ public class ajaxSprCityController extends HttpServlet {
                     " WHERE id = \"" + id + "\";");
 
             // проверяем сохранились ли изменения
-            SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT * FROM city WHERE " +
+            SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT * FROM city WHERE  " +
                     "cityname = \"" + city + "\" AND " +
                     "id = \"" + id + "\";");
             return_id = "{" +
