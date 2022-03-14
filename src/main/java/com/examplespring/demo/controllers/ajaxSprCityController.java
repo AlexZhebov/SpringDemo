@@ -118,7 +118,7 @@ public class ajaxSprCityController extends HttpServlet {
             String id = obj.getString("id");
 
             String return_id;
-
+            serviceDB.getSqlQuery("UPDATE persons SET id_city=0 WHERE id_city = \"" + id + "\";");
             serviceDB.getSqlQuery("DELETE FROM city WHERE id = \"" + id + "\";");
 
             SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT id FROM city " +
