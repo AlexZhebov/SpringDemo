@@ -32,10 +32,12 @@ public class ajaxSprCityController extends HttpServlet {
     @Override
     @GetMapping("/sprcity")
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("Content-Type", "application/json; charset=utf-8");
+
         String returnData = "[\n";
         int i = 0;
         // считываем текущие значение
-        SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT * FROM city;");
+        SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT * FROM city WHERE id <> 0;");
         while (resultQuery.next()) {
             if (i > 0) {returnData = returnData + ",\n";}
             returnData = returnData + "{\n   \"id\": \"" + resultQuery.getString("id") + "\",\n";

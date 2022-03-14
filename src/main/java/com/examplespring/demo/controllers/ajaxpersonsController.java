@@ -38,13 +38,37 @@ public class ajaxpersonsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        resp.setHeader("Access-Control-Allow-Origin", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        //resp.setHeader("Access-Control-Allow-Origin", "*");
+        //resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         //resp.setHeader("Access-Control-Max-Age", "3600");
         //resp.setHeader("Access-Control-Allow-Headers", "x-requested-with");
 
         resp.setHeader("Content-Type", "application/json; charset=utf-8");
 
+
+        String returnData = "[\n";
+        int i = 0;
+        // считываем текущие значение
+        SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT persons.*, city.cityname" +
+                " FROM persons, city " +
+                "WHERE persons.id_city = city.id;");
+        while (resultQuery.next()) {
+            if (i > 0) {returnData = returnData + ",\n";}
+            returnData = returnData + "  {\n" +
+                    "  \"id\": \"" + resultQuery.getString("id") + "\",\n" +
+                    "  \"firstName\": \"" + resultQuery.getString("firstname") + "\",\n" +
+                    "  \"lastName\": \"" + resultQuery.getString("lastname") + "\",\n" +
+                    "  \"id_city\": \"" + resultQuery.getString("id_city") + "\",\n" +
+                    "  \"city\": \"" + resultQuery.getString("cityname") + "\",\n" +
+                    "  \"dataR\": \"" + resultQuery.getString("dataR") + "\"\n" +
+                    "  }";
+            i++;
+        }
+        returnData = returnData + "]";
+
+        resp.getWriter().write(returnData);
+
+        /**
         Iterable<persons> persons = personsRepositiry.findAll();
         script = "[\n";
         i = 0;
@@ -62,6 +86,7 @@ public class ajaxpersonsController extends HttpServlet {
         script = script + "\n]\n";
 
         resp.getWriter().write(script);
+         */
     }
 
     @Override
@@ -88,7 +113,7 @@ public class ajaxpersonsController extends HttpServlet {
             // получаем переменные
             String firstName = obj.getString("firstName");
             String lastName = obj.getString("lastName");
-            String city = obj.getString("city");
+            String city = obj.getString("id_city");
             String dataR = obj.getString("dataR");
 
             String return_id = "";
@@ -104,7 +129,7 @@ public class ajaxpersonsController extends HttpServlet {
              SqlRowSet resultQuery = jdbcTemplate.queryForRowSet("SELECT MAX(id) AS insert_id FROM persons;");
              */
 
-            serviceDB.getSqlQuery("INSERT INTO persons (firstName, LastName, city, dataR) " +
+            serviceDB.getSqlQuery("INSERT INTO persons (firstName, LastName, id_city, dataR) " +
                     "VALUES (\"" + firstName + "\", \"" + lastName + "\", \"" + city + "\", " +
                     "\"" + dataR + "\");");
 
@@ -190,7 +215,7 @@ public class ajaxpersonsController extends HttpServlet {
             if (resultQuery.next()) {
                 firstName = resultQuery.getString("firstName");
                 lastName = resultQuery.getString("lastName");
-                city = resultQuery.getString("city");
+                city = resultQuery.getString("id_city");
                 dataR = resultQuery.getString("dataR");
             }
 
@@ -201,8 +226,8 @@ public class ajaxpersonsController extends HttpServlet {
             if (!obj.isNull("lastName")) {
                 lastName = obj.getString("lastName");
             }
-            if (!obj.isNull("city")) {
-                city = obj.getString("city");
+            if (!obj.isNull("id_city")) {
+                city = obj.getString("id_city");
             }
             if (!obj.isNull("dataR")) {
                 dataR = obj.getString("dataR");
@@ -213,7 +238,7 @@ public class ajaxpersonsController extends HttpServlet {
             serviceDB.getSqlQuery("UPDATE persons SET " +
                     "firstName = \"" + firstName + "\"," +
                     "lastName = \"" + lastName + "\"," +
-                    "city = \"" + city + "\"," +
+                    "id_city = \"" + city + "\"," +
                     "dataR = \"" + dataR + "\"" +
                     " WHERE id = \"" + id + "\";");
 
@@ -221,7 +246,7 @@ public class ajaxpersonsController extends HttpServlet {
             resultQuery = serviceDB.getSqlQueryR("SELECT * FROM persons WHERE " +
                     "firstName = \"" + firstName + "\" AND " +
                     "lastName = \"" + lastName + "\" AND " +
-                    "city = \"" + city + "\" AND " +
+                    "id_city = \"" + city + "\" AND " +
                     "dataR = \"" + dataR + "\" AND " +
                     "id = \"" + id + "\";");
             return_id = "{" +
