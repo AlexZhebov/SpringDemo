@@ -43,7 +43,7 @@ public class ajaxpersonsController extends HttpServlet {
         resp.setHeader("Content-Type", "application/json; charset=utf-8");
 
         String findQuery = "";
-        //проверяем какие пришли измененные поля
+        //проверяем есть ли текст поиска
         if (!(req.getParameter("findtext") == null)) {
             findQuery = " AND (persons.firstName like '%" + req.getParameter("findtext") + "%'" +
                     "OR persons.lastName like '%" + req.getParameter("findtext") + "%'" +
@@ -56,7 +56,8 @@ public class ajaxpersonsController extends HttpServlet {
         // считываем текущие значение
         SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT persons.*, city.cityname" +
                 " FROM persons, city " +
-                "WHERE persons.id_city = city.id " + findQuery + ";");
+                "WHERE persons.id_city = city.id " + findQuery + "" +
+                "LIMIT " + req.getParameter("start") + ", " + req.getParameter("limit") + ";");
         while (resultQuery.next()) {
             if (i > 0) {returnData = returnData + ",\n";}
             returnData = returnData + "  {\n" +
