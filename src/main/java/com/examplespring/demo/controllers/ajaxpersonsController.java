@@ -1,12 +1,9 @@
 package com.examplespring.demo.controllers;
 
 import com.examplespring.demo.DaoService;
-import com.examplespring.demo.models.persons;
 import com.examplespring.demo.repo.PersonsRepositiry;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,13 +42,21 @@ public class ajaxpersonsController extends HttpServlet {
 
         resp.setHeader("Content-Type", "application/json; charset=utf-8");
 
+        String findQuery = "";
+        //проверяем какие пришли измененные поля
+        if (!(req.getParameter("findtext") == null)) {
+            findQuery = " AND (persons.firstName like '%" + req.getParameter("findtext") + "%'" +
+                    "OR persons.lastName like '%" + req.getParameter("findtext") + "%'" +
+                    "OR city.cityname like '%" + req.getParameter("findtext") + "%'" +
+                    ") ";
+        }
 
         String returnData = "[\n";
         int i = 0;
         // считываем текущие значение
         SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT persons.*, city.cityname" +
                 " FROM persons, city " +
-                "WHERE persons.id_city = city.id;");
+                "WHERE persons.id_city = city.id " + findQuery + ";");
         while (resultQuery.next()) {
             if (i > 0) {returnData = returnData + ",\n";}
             returnData = returnData + "  {\n" +
