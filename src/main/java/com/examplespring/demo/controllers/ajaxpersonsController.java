@@ -51,16 +51,37 @@ public class ajaxpersonsController extends HttpServlet {
                     ") ";
         }
 
-        String returnData = "[\n";
+        String start = "0";
+        //проверяем есть ли параметр start
+        if (!(req.getParameter("start") == null)) {
+            start = req.getParameter("start");
+        }
+
+        String limit = "10";
+        //проверяем есть ли параметр limit
+        if (!(req.getParameter("limit") == null)) {
+            limit = req.getParameter("limit");
+        }
+
+        // вычисляем количество записей в таблице с условием поиска
+        String totalcount = "0";
+        SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT COUNT(persons.id) AS totalcount" +
+                " FROM persons, city " +
+                "WHERE persons.id_city = city.id " + findQuery + ";");
+        if (resultQuery.next()) {
+            totalcount = resultQuery.getString("totalcount");
+        }
+
+        String returnData = "\n { \n\"total\": \"" + totalcount + "\",     \n\"persons\": \n[";
         int i = 0;
         // считываем текущие значение
-        SqlRowSet resultQuery = serviceDB.getSqlQueryR("SELECT persons.*, city.cityname" +
+        resultQuery = serviceDB.getSqlQueryR("SELECT persons.*, city.cityname" +
                 " FROM persons, city " +
                 "WHERE persons.id_city = city.id " + findQuery + "" +
-                "LIMIT " + req.getParameter("start") + ", " + req.getParameter("limit") + ";");
+                "LIMIT " + start + ", " + limit + ";");
         while (resultQuery.next()) {
             if (i > 0) {returnData = returnData + ",\n";}
-            returnData = returnData + "  {\n" +
+            returnData = returnData + " {\n" +
                     "  \"id\": \"" + resultQuery.getString("id") + "\",\n" +
                     "  \"firstName\": \"" + resultQuery.getString("firstname") + "\",\n" +
                     "  \"lastName\": \"" + resultQuery.getString("lastname") + "\",\n" +
@@ -70,7 +91,7 @@ public class ajaxpersonsController extends HttpServlet {
                     "  }";
             i++;
         }
-        returnData = returnData + "]";
+        returnData = returnData + "\n]\n}";
 
         resp.getWriter().write(returnData);
 
